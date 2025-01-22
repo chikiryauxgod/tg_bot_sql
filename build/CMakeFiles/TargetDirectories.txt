@@ -1,0 +1,2 @@
+D:/GitHub/tg_bot_sql/build/CMakeFiles/ALL_BUILD.dir
+D:/GitHub/tg_bot_sql/build/CMakeFiles/ZERO_CHECK.dir
