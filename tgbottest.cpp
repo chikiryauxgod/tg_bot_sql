@@ -2,7 +2,7 @@
 #include <tgbot/tgbot.h>
 
 int main() {
-    TgBot::Bot bot("PLACE YOUR TOKEN HERE");
+    TgBot::Bot bot("7674686019:AAE2yBaPzhdgz8UH8pvnMXypVBUjJSaipzQ");
     bot.getEvents().onCommand("start", [&bot](TgBot::Message::Ptr message) {
         bot.getApi().sendMessage(message->chat->id, "Hi!");
     });

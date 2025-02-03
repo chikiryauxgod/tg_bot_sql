@@ -3,8 +3,8 @@
 
 int main() {
     try {
-        pqxx::connection c("dbname=northwind user=postgres password=1337 hostaddr=127.0.0.1.10.255.255.254 port=5432");
-
+        pqxx::connection c("dbname=northwind user=postgres password=1337 hostaddr=172.21.48.1 port=5432");
+// hostaddr = windows ipconfig 
         std::cout << "Connection to: " << c.dbname() << std::endl;
 
         pqxx::work tx{c};
