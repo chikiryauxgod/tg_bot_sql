@@ -134,7 +134,7 @@ private:
 int main()
 {
     std::string token = "7674686019:AAE2yBaPzhdgz8UH8pvnMXypVBUjJSaipzQ";
-    std::string connection = "dbname=yourdb user=youruser password=yourpassword hostaddr=127.0.0.1 port=5432";
+    std::string connection = "dbname=northwind user=postgres password=1337 hostaddr=172.21.48.1 port=5432";
     
     MyBot myBot(token, connection);
     myBot.run();
