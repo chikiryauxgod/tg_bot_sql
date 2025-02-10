@@ -20,9 +20,9 @@ sudo apt update && sudo apt install -y cmake g++ libboost-all-dev libpqxx-dev li
 ## 🛠 Настройка PostgreSQL (Windows)
 
 1. Запустите **pgAdmin** и создайте базу данных:
-   - **Имя БД**: `chikiryauxgoddb`
+   - **Имя БД**: `dbname`
    - **Пользователь**: `postgres`
-   - **Пароль**: `ТВОЙ_ПАРОЛЬ`
+   - **Пароль**: `password`
 
 2. Создайте таблицу `messages`:
 
@@ -55,7 +55,7 @@ CREATE TABLE messages (
 
 Добавьте переменные окружения в WSL:
 ```sh
-echo "export TELEGRAM_BOT_TOKEN='ТВОЙ_ТОКЕН'" >> ~/.bashrc
+echo "export TELEGRAM_BOT_TOKEN='token'" >> ~/.bashrc
 echo "export DB_CONNECTION='dbname=dbname user=postgres password=password hostaddr=address port=5432'" >> ~/.bashrc
 source ~/.bashrc
 ```
