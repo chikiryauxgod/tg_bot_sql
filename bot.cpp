@@ -9,6 +9,7 @@
 #include <pqxx/pqxx>
 #include <tgbot/types/Chat.h>
 #include <tgbot/types/Message.h>
+#include <cstdlib> 
 
 class DB_Manager
 {
@@ -37,7 +38,6 @@ public:
     }
 
 private:
-    std::string db_connection = "";
     pqxx::connection conn;
 };
 
@@ -52,7 +52,7 @@ class StartCommand final : public Command
 {
 public:
     void execute(TgBot::Bot& bot, TgBot::Message::Ptr msg) override {
-        bot.getApi().sendMessage(msg->chat->id, "Hi! I'm bot written in C++ with PostgreSQL.");
+        bot.getApi().sendMessage(msg->chat->id, "Hi! I'm a bot written in C++ with PostgreSQL.");
     }
 };
 
@@ -60,7 +60,7 @@ class EchoCommand final : public Command
 {
 public:
     void execute(TgBot::Bot& bot, TgBot::Message::Ptr msg) override {
-        bot.getApi().sendMessage(msg->chat->id, "You've wrote: " + msg->text);
+        bot.getApi().sendMessage(msg->chat->id, "You've written: " + msg->text);
     }
 };
 
@@ -85,7 +85,6 @@ private:
 class MyBot
 { 
 public:
-
     MyBot(const std::string& token, const std::string& db_connection)
         : bot(token), db_mng(db_connection), router() 
     {
@@ -104,7 +103,6 @@ public:
         }
     }
 
-    
 private:
     void SetupHandlers()
     {
@@ -124,17 +122,21 @@ private:
     TgBot::Bot bot;        
     DB_Manager db_mng;     
     CommandRouter router;  
-
-    static int users;
 };
 
-
-// int MyBot::users = 0;
+std::string GetEnvVar(const std::string& var_name) {
+    const char* value = std::getenv(var_name.c_str());
+    if (!value) {
+        std::cerr << "Error: env variable " << var_name << " isn't expected." << std::endl;
+        std::exit(EXIT_FAILURE);
+    }
+    return std::string(value);
+}
 
 int main()
 {
-    std::string token = "7674686019:AAE2yBaPzhdgz8UH8pvnMXypVBUjJSaipzQ";
-    std::string connection = "dbname=northwind user=postgres password=1337 hostaddr=172.21.48.1 port=5432";
+    std::string token = GetEnvVar("TG_BOT_TOKEN");
+    std::string connection = GetEnvVar("DB_CONNECTION");
     
     MyBot myBot(token, connection);
     myBot.run();
