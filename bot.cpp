@@ -137,6 +137,6 @@ int main()
     std::string connection = "dbname=yourdb user=youruser password=yourpassword hostaddr=127.0.0.1 port=5432";
     
     MyBot myBot(token, connection);
-    
+    myBot.run();
     return 0;
 }
