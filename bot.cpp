@@ -124,7 +124,7 @@ private:
     CommandRouter router;  
 };
 
-std::string GetEnvVar(const std::string& var_name) {
+std::string get_var(const std::string& var_name) {
     const char* value = std::getenv(var_name.c_str());
     if (!value) {
         std::cerr << "Error: env variable " << var_name << " isn't expected." << std::endl;
@@ -135,8 +135,8 @@ std::string GetEnvVar(const std::string& var_name) {
 
 int main()
 {
-    std::string token = GetEnvVar("TG_BOT_TOKEN");
-    std::string connection = GetEnvVar("DB_CONNECTION");
+    std::string token = get_var("TG_BOT_TOKEN");
+    std::string connection = get_var("DB_CONNECTION");
     
     MyBot myBot(token, connection);
     myBot.run();
